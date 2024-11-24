@@ -1,0 +1,4 @@
+# default profile 禁用模板缓存
+
+pebble:
+  cache: false

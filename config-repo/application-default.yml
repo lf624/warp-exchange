@@ -1,0 +1,10 @@
+# default 配置
+
+exchange:
+  config:
+    # turn on debug for default env:
+    debug-mode: ${EXCHANGE_DEBUG_MODE:true}
+
+logging:
+  level:
+    com.learn.exchange: ${LOGGING_EXCHANGE_LEVEL:DEBUG}

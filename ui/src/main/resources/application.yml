@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: ui
+  config:
+    # 导入Config Server地址
+    import: configserver:${CONFIG_SERVER:http://localhost:8888}
