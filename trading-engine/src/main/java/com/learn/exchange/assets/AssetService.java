@@ -35,7 +35,7 @@ public class AssetService extends LoggerSupport{
     // 除用户存入资产操作，其他常规操作均需检查余额 checkBalance
     public void transfer(Transfer type, Long fromUser, Long toUser, AssetEnum assetId,
                          BigDecimal amount) {
-        if(!tryTransfer(type, fromUser, toUser, assetId, amount,true))
+        if(!tryTransfer(type, fromUser, toUser, assetId, amount, true))
             throw new RuntimeException("Transfer failed for type: " + type +
                     ", form user " + fromUser + ", to user " + toUser +
                     ", asset = " + assetId + ", amount = " + amount);
