@@ -3,7 +3,7 @@ package com.learn.exchange.model.support;
 public interface EntitySupport {
 
     // 定义数据库存储 big decimal 的精度: DECIMAL(PRECISION, SCALE)
-    int PRECISION = 32;
+    int PRECISION = 36;
     int SCALE = 18;
 
     int VAR_ENUM = 32;

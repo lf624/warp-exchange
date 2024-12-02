@@ -3,7 +3,6 @@ package com.learn.exchange.clearing;
 import com.learn.exchange.assets.AssetService;
 import com.learn.exchange.assets.Transfer;
 import com.learn.exchange.enums.AssetEnum;
-import com.learn.exchange.enums.Direction;
 import com.learn.exchange.match.MatchDetailRecord;
 import com.learn.exchange.match.MatchResult;
 import com.learn.exchange.model.trade.OrderEntity;
