@@ -10,13 +10,20 @@ import com.learn.exchange.enums.UserType;
 import com.learn.exchange.match.MatchDetailRecord;
 import com.learn.exchange.match.MatchEngine;
 import com.learn.exchange.match.MatchResult;
+import com.learn.exchange.message.TickMessage;
 import com.learn.exchange.message.event.AbstractEvent;
 import com.learn.exchange.message.event.OrderCancelEvent;
 import com.learn.exchange.message.event.OrderRequestEvent;
 import com.learn.exchange.message.event.TransferEvent;
+import com.learn.exchange.messaging.MessageConsumer;
+import com.learn.exchange.messaging.MessageProducer;
+import com.learn.exchange.messaging.MessagingFactory;
 import com.learn.exchange.model.trade.OrderEntity;
 import com.learn.exchange.order.OrderService;
+import com.learn.exchange.redis.RedisService;
+import com.learn.exchange.store.StoreService;
 import com.learn.exchange.support.LoggerSupport;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -50,6 +57,18 @@ public class TradingEngineService extends LoggerSupport {
     @Autowired
     ClearingService clearingService;
 
+    @Autowired
+    MessagingFactory messagingFactory;
+    @Autowired
+    StoreService storeService;
+    @Autowired
+    RedisService redisService;
+
+    private MessageConsumer consumer;
+    private MessageProducer<TickMessage> producer;
+
+    private String shaUpdateOrderBookLua;
+
     // 上一个处理的事件的 sequenceId
     private long lastSequenceId = 0;
     // orderBook 是否发生了变化
@@ -60,6 +79,11 @@ public class TradingEngineService extends LoggerSupport {
 
     private Queue<List<OrderEntity>> orderQueue = new ConcurrentLinkedQueue<>();
 
+    @PostConstruct
+    public void init() {
+        this.shaUpdateOrderBookLua = this.redisService.loadScriptFromClasspath("/redis/update-orderbook.lua");
+
+    }
 
     private void panic() {
         logger.error("application panic, exit now....");
