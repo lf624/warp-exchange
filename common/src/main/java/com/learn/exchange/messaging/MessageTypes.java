@@ -30,6 +30,7 @@ public class MessageTypes {
     @SuppressWarnings("unchecked")
     @PostConstruct
     public void init() {
+        logger.info("find message classes...");
         var provider = new ClassPathScanningCandidateComponentProvider(false);
         provider.addIncludeFilter(new TypeFilter() {
             @Override
@@ -49,6 +50,7 @@ public class MessageTypes {
         for(BeanDefinition bean : beans) {
             try {
                 Class<?> clazz = Class.forName(bean.getBeanClassName());
+                logger.info("found message class: {}", clazz.getName());
                 if(messageTypes.put(clazz.getName(), (Class<? extends AbstractMessage>) clazz) != null)
                     throw new RuntimeException("Duplicate message class name: " + clazz.getName());
             }catch (ClassNotFoundException e) {

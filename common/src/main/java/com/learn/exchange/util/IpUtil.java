@@ -51,7 +51,7 @@ public class IpUtil {
         }catch (SocketException e) {
             logger.warn("Get IP address by NetworkInterface.getNetworkInterfaces() failed: {}", e.getMessage());
         }
-        ipList.forEach(ip -> logger.debug("Found ip address: {}", ip));
+        ipList.forEach(ip -> logger.debug("Found ip address: {}", ip.getHostAddress()));
         if(ipList.isEmpty())
             return "127.0.0.1";
         return ipList.get(0).getHostAddress();

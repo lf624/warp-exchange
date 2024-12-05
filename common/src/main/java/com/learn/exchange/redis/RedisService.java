@@ -7,6 +7,8 @@ import io.lettuce.core.RedisURI;
 import io.lettuce.core.ScriptOutputType;
 import io.lettuce.core.api.StatefulRedisConnection;
 import io.lettuce.core.api.sync.RedisCommands;
+import io.lettuce.core.pubsub.RedisPubSubAdapter;
+import io.lettuce.core.pubsub.StatefulRedisPubSubConnection;
 import io.lettuce.core.support.ConnectionPoolSupport;
 import jakarta.annotation.PreDestroy;
 import org.apache.commons.pool2.impl.GenericObjectPool;
@@ -19,6 +21,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.util.List;
+import java.util.function.Consumer;
 
 @Component
 public class RedisService {
@@ -103,5 +106,16 @@ public class RedisService {
     public List<String> zrangeByScore(String key, long start, long end) {
         return executeSync(commands ->
                 commands.zrangebyscore(key, Range.create(start, end)));
+    }
+
+    public void subscribe(String channel, Consumer<String> listener) {
+        StatefulRedisPubSubConnection<String, String> conn = this.redisClient.connectPubSub();
+        conn.addListener(new RedisPubSubAdapter<>() {
+            @Override
+            public void message(String channel, String message) {
+                listener.accept(message);
+            }
+        });
+        conn.sync().subscribe(channel);
     }
 }

@@ -139,4 +139,10 @@ class AccessibleProperty {
 
         DEFAULT_COLUMN_TYPES.put(BigDecimal.class, "DECIMAL($1,$2)");
     }
+
+    @Override
+    public String toString() {
+        return "AccessibleProperty [propertyName=" + propertyName + ", propertyType=" + propertyType
+                + ", columnDefinition=" + columnDefinition + "]";
+    }
 }
