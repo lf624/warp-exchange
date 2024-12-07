@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/ui/pom.xml" />
         <option value="$PROJECT_DIR$/config/pom.xml" />
         <option value="$PROJECT_DIR$/trading-engine/pom.xml" />
+        <option value="$PROJECT_DIR$/trading-sequencer/pom.xml" />
       </list>
     </option>
   </component>

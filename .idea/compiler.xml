@@ -9,6 +9,7 @@
         <module name="trading-engine" />
         <module name="common" />
         <module name="ui" />
+        <module name="trading-sequencer" />
         <module name="config" />
       </profile>
     </annotationProcessing>
@@ -18,6 +19,7 @@
       <module name="common" options="-parameters" />
       <module name="config" options="-parameters" />
       <module name="trading-engine" options="-parameters" />
+      <module name="trading-sequencer" options="-parameters" />
       <module name="ui" options="-parameters" />
     </option>
   </component>

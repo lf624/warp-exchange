@@ -303,6 +303,7 @@ public class TradingEngineService extends LoggerSupport {
                 this.processEvent(e);
             return;
         }
+        // 判断当前消息是否指向上一条消息
         if(event.previousId != this.lastSequenceId) {
             logger.warn("bad event: expected previous id {} but actual {} for event {}", this.lastSequenceId,
                     event.previousId, event);
@@ -341,7 +342,9 @@ public class TradingEngineService extends LoggerSupport {
         ZonedDateTime zdt = Instant.ofEpochMilli(event.createdAt).atZone(this.zoneId);
         int year = zdt.getYear();
         int month = zdt.getMonth().getValue();
+        // 生成 orderId
         long orderId = event.sequenceId * 10000 + (year * 100 + month);
+        // 创建Order
         OrderEntity order = this.orderService.createOrder(event.sequenceId, event.createdAt,
                 orderId, event.userId, event.direction, event.price, event.quantity);
         if(order == null) {
@@ -350,7 +353,9 @@ public class TradingEngineService extends LoggerSupport {
             this.apiResultQueue.add(ApiResultMessage.createOrderFailed(event.refId, event.createdAt));
             return;
         }
+        // 撮合
         MatchResult result = this.matchEngine.processOrder(event.sequenceId, order);
+        // 清算
         this.clearingService.clearMatchResult(result);
         // 推送成功结果
         // 必须复制一份OrderEntity，因为将异步序列化
