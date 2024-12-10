@@ -3,6 +3,8 @@
 /config/target/
 /ui/target/
 /trading-engine/target/
+/trading-sequencer/target/
+/trading-api/target/
 
 # docker
 /build/docker/

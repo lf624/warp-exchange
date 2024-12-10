@@ -29,7 +29,7 @@ final class Criteria<T> {
     String sql() {
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT ");
-        sql.append(select.isEmpty() ? "*" : String.join(", ", select));
+        sql.append(select == null ? "*" : String.join(", ", select));
         sql.append(" FROM ").append(this.mapper.tableName);
         if(where != null)
             sql.append(" WHERE ").append(where);
