@@ -52,9 +52,9 @@ public class TradingEngineService extends LoggerSupport {
     @Autowired(required = false)
     ZoneId zoneId = ZoneId.systemDefault();
 
-    // @Value("#{exchangeConfiguration.debugMode}")
+    @Value("#{exchangeConfiguration.debugMode}")
     boolean debugMode = false;
-    // @Value("#{exchangeConfiguration.orderBookDepth}")
+    @Value("#{exchangeConfiguration.orderBookDepth}")
     int orderBookDepth = 100;
 
     boolean fatalError = false;
