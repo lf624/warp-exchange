@@ -176,6 +176,7 @@ public class TradingEngineService extends LoggerSupport {
         for(;;) {
             ApiResultMessage msg = apiResultQueue.poll();
             if(msg != null) {
+                // 发送 pub 事件 TRADING_API_RESULT，TradingApiController 订阅该事件并处理
                 redisService.publish(RedisCache.Topic.TRADING_API_RESULT, JsonUtil.writeJson(msg));
             } else {
                 try {

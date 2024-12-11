@@ -148,7 +148,7 @@ public class TradingApiController extends AbstractApiController {
         orderRequest.validate();
         // 消息的Reference ID
         final String refId = IdUtil.generateUniqueId();
-        // 创建订单请求消息(事件)
+        // 创建订单请求消息
         var event = new OrderRequestEvent();
         event.refId = refId;
         event.userId = userId;
