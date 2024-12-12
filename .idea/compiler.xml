@@ -12,6 +12,7 @@
         <module name="ui" />
         <module name="trading-sequencer" />
         <module name="config" />
+        <module name="quotation" />
       </profile>
     </annotationProcessing>
   </component>
@@ -19,6 +20,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="common" options="-parameters" />
       <module name="config" options="-parameters" />
+      <module name="quotation" options="-parameters" />
       <module name="trading-api" options="-parameters" />
       <module name="trading-engine" options="-parameters" />
       <module name="trading-sequencer" options="-parameters" />

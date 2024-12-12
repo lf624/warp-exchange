@@ -398,6 +398,7 @@ public class TradingEngineService extends LoggerSupport {
             // 异步发送 tick 消息
             TickMessage msg = new TickMessage();
             msg.sequenceId = event.sequenceId;
+            msg.createdAt = event.createdAt;
             msg.ticks = ticks;
             this.tickQueue.add(msg);
             // 异步通知orderMatch

@@ -2,6 +2,7 @@ package com.learn.exchange.util;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -43,6 +44,15 @@ public class JsonUtil {
     public static <T> T readJson(String str, Class<T> clazz) {
         try {
             return OBJECT_MAPPER.readValue(str, clazz);
+        } catch (JsonProcessingException e) {
+            logger.warn("can't read json: " + str, e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static  <T> T readJson(String str, TypeReference<T> ref) {
+        try {
+            return OBJECT_MAPPER.readValue(str, ref);
         } catch (JsonProcessingException e) {
             logger.warn("can't read json: " + str, e);
             throw new RuntimeException(e);

@@ -10,6 +10,7 @@ public class IpUtilTest {
     @Test
     void testIpUtil() {
         System.out.println(IpUtil.getIpAddress());
+        System.out.println(IpUtil.getHostId());
     }
 
     @Test
