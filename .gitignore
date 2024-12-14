@@ -6,6 +6,7 @@
 /trading-sequencer/target/
 /trading-api/target/
 /quotation/target/
+/push/target/
 
 # docker
 /build/docker/

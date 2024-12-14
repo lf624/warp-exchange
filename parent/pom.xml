@@ -32,7 +32,7 @@
         <pebble.version>3.2.2</pebble.version>
         <springcloud.version>2023.0.3</springcloud.version>
         <springdoc.version>2.6.0</springdoc.version>
-<!--        <vertx.version>4.3.1</vertx.version>-->
+        <vertx.version>4.5.11</vertx.version>
     </properties>
 
     <!-- 引入 SpringCloud 依赖 -->

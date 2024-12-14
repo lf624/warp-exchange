@@ -19,5 +19,6 @@
         <module>../trading-sequencer</module>
         <module>../trading-api</module>
         <module>../quotation</module>
+        <module>../push</module>
     </modules>
 </project>
