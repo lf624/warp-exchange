@@ -8,7 +8,7 @@ public final class Where<T> extends CriteriaQuery<T> {
     Where(Criteria<T> criteria, String clause, Object... args) {
         super(criteria);
         this.criteria.where = clause;
-        this.criteria.whereParams.addAll(Arrays.asList(args));
+        this.criteria.whereParams = Arrays.asList(args); // 暂时设置为固定
     }
 
     public Limit<T> limit(int maxResults) {

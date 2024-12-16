@@ -42,13 +42,13 @@ class AccessibleProperty {
     public Object get(Object bean) throws ReflectiveOperationException {
         Object obj = this.field.get(bean);
         if(this.javaToSqlMapper != null)
-            obj = this.javaToSqlMapper.apply(bean);
+            obj = this.javaToSqlMapper.apply(obj); // 注意
         return obj;
     }
 
     public void set(Object bean, Object value) throws ReflectiveOperationException {
         if(this.sqlToJavaMapper != null)
-            value = this.sqlToJavaMapper.apply(bean);
+            value = this.sqlToJavaMapper.apply(value); // 注意
         this.field.set(bean, value);
     }
 

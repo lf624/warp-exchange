@@ -113,6 +113,7 @@ public class RestClient {
 
     <T> T request(Class<T> clazz, TypeReference<T> ref, String method, String path, String authHeader,
                   Map<String, String> query, Object body) {
+        logger.warn("request internal url: {}, {}", endpoint, path);
         if(!path.startsWith("/"))
             throw new IllegalArgumentException("Invalid path: " + path);
         // 构造 query
@@ -141,7 +142,7 @@ public class RestClient {
         if(authHeader != null)
             requestBuilder.addHeader("Authorization", authHeader);
         if("POST".equals(method))
-            requestBuilder.put(RequestBody.create(jsonBody, JSON));
+            requestBuilder.post(RequestBody.create(jsonBody, JSON));
         Request request = requestBuilder.build();
         try {
             return execute(clazz, ref, request);
