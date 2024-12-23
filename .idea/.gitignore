@@ -7,5 +7,7 @@
 /dataSources/
 /dataSources.local.xml
 
+/inspectionProfiles/
+
 # docker目录
 /../build/docker/
