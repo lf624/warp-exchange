@@ -1,3 +1,6 @@
+# .idea
+/.idea
+
 # Project exclude paths
 /common/target/
 /config/target/
