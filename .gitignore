@@ -10,6 +10,11 @@
 
 # docker
 /build/docker/
+/build/bot/
 
 # .idea
 /.idea/
+
+# MAC OS
+.DS_Store
+build/.DS_Store
